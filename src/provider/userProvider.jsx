@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useState } from "react";
 
-//crear contexto
+//crear contexto usuarios
 const userContext = createContext();
 
 export function useUserContext() {

@@ -26,8 +26,8 @@ model Product{
   description String
   price Float
   createAt DateTime @default(now())
-  shoppingCart ShoppingCart @relation(fields: [shoppingCartId], references: [id])
-  shoppingCartId String
+  shoppingCart ShoppingCart? @relation(fields: [shoppingCartId], references: [id])
+  shoppingCartId String?
 }
 
 model ShoppingCart {

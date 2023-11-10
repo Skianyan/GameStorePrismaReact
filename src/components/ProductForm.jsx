@@ -1,65 +1,64 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import { useUserContext } from "../provider/userProvider";
-const Formulario = () => {
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-	const [email, setEmail] = useState("");
+import { useProductContext } from "../provider/productProvider";
+const ProductForm = () => {
+	const [productName, setProductName] = useState("");
+	const [description, setDescription] = useState("");
+	const [price, setPrice] = useState("");
 
 	const [error, setError] = useState(false);
 
-	const { user, setUser } = useUserContext();
+	const { product, setProduct } = useProductContext();
 	const router = useRouter();
-	//console.log(user);
+	console.log(product);
 	useEffect(() => {
-		if (user !== null) {
-			setUsername(user.username);
-			setPassword(user.password);
-			setEmail(user.email);
+		if (product !== null) {
+			setProductName(product.productName);
+			setDescription(product.description);
+			setPrice(product.price);
 		}
-	}, [user]);
+	}, [product]);
 
 	const submitData = async (e) => {
 		e.preventDefault();
 
-		if ([username, password, email].includes("")) {
+		if ([productName, description, price].includes("")) {
 			setError(true);
 			return;
 		}
 		setError(false);
 		// este objeto se crea si el usuario está null
-		const newUser = {
-			username,
-			password,
-			email,
+		const newProduct = {
+			productName,
+			description,
+			price,
 		};
 
-		if (user === null) {
+		if (product === null) {
 			try {
-				const body = { username, password, email };
-				await fetch(`/api/routes/users`, {
+				const body = { productName, description, price };
+				await fetch(`/api/routes/products`, {
 					cache: "no-store",
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(body),
 				});
-				setUser(null);
+				setProduct(null);
 				router.push("/");
 			} catch (error) {
 				console.error(error);
 			}
-		} else if (user !== null) {
+		} else if (product !== null) {
 			try {
-				const body = { username, password, email };
-
-				await fetch(`/api/routes/users/${user.id}`, {
+				const body = { productName, description, price };
+				await fetch(`/api/routes/products/${product.id}`, {
 					cache: "no-store",
 					method: "PUT",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify(body),
 				});
-				setUser(null);
+				setProduct(null);
 				router.push("/");
 			} catch (error) {
 				console.error(error);
@@ -68,8 +67,8 @@ const Formulario = () => {
 	};
 
 	const delet = async () => {
-		const { id } = user;
-		await fetch(`/api/routes/users/${id}`, {
+		const { id } = product;
+		await fetch(`/api/routes/products/${id}`, {
 			cache: "no-store",
 			method: "DELETE",
 		});
@@ -77,65 +76,65 @@ const Formulario = () => {
 	};
 
 	const clear = () => {
-		setUsername("");
-		setPassword("");
+		setProductName("");
+		setDescription("");
 		setBanda("");
 	};
 	return (
 		<>
 			<form className="bg-[#2A475E] space-y-2 border-4 border-indigo-600 p-4 rounded-md">
 				{error && (
-					<div className="bg-red-500 rounded-md font-bold text-center ">
+					<div className="bg-red-500 rounded-md font-bold text-center">
 						{" "}
 						Error: All text fields must contain valid information
 					</div>
 				)}
 				<div className="flex flex-col space-y-1">
 					<label
-						htmlFor="username"
+						htmlFor="productName"
 						className="font font-semibold uppercase text-white"
 					>
-						Username
+						productName
 					</label>
 					<input
 						type="text"
-						id="username"
+						id="productName"
 						className="p-2 rounded-md text-slate-600"
-						placeholder="username"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
+						placeholder="productName"
+						value={productName}
+						onChange={(e) => setProductName(e.target.value)}
 					/>
 				</div>
 				<div className="flex flex-col space-y-1">
 					<label
-						htmlFor="password"
+						htmlFor="description"
 						className="font font-semibold uppercase text-white"
 					>
-						Password
+						description
 					</label>
 					<input
 						type="text"
-						id="password"
+						id="description"
 						className="p-2 rounded-md text-slate-600"
-						placeholder="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
+						placeholder="description"
+						value={description}
+						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</div>
 				<div className="flex flex-col space-y-1">
 					<label
-						htmlFor="email"
+						htmlFor="price"
 						className="font font-semibold uppercase text-white"
 					>
-						Email
+						price
 					</label>
 					<input
 						type="text"
-						id="email"
+						id="price"
 						className="p-2 rounded-md text-slate-600"
-						placeholder="email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						placeholder="price"
+						value={price}
+						onChange={(e) => setPrice(e.target.value)}
 					/>
 				</div>
 				<div>
@@ -143,7 +142,7 @@ const Formulario = () => {
 						className="bg-[#1b2444] rounded-md p-3 mt-4 text-white"
 						onClick={submitData}
 					>
-						{!user ? "Register user" : "Edit user"}
+						{!product ? "Register product" : "Edit product"}
 					</button>
 				</div>
 				<div className="flex w-full justify-end space-x-4">
@@ -169,4 +168,4 @@ const Formulario = () => {
 	);
 };
 
-export default Formulario;
+export default ProductForm;

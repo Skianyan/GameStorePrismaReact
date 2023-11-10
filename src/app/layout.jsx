@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { UserContextProvider } from "@/provider/userProvider";
+import { ProductContextProvider } from "@/provider/productProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,9 @@ export default function RootLayout({ children }) {
 		<html lang="en">
 			<body className={inter.className}>
 				<Header />
-				<UserContextProvider>{children}</UserContextProvider>
+				<UserContextProvider>
+					<ProductContextProvider>{children}</ProductContextProvider>
+				</UserContextProvider>
 				<Footer />
 			</body>
 		</html>

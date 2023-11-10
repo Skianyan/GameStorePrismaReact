@@ -9,7 +9,7 @@ const HomePage = () => {
 					className="bg-slate-400 p-2 rounded-md cursor-pointer text-slate-800 font-semibold w-36"
 					href={"/registeruser"}
 				>
-					Add User
+					Register User
 				</Link>
 				<Link
 					className="bg-slate-400 p-2 rounded-md cursor-pointer text-slate-800 font-semibold w-36"

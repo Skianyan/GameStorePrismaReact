@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Sidemenu from "./Sidemenu";
+import Link from "next/link";
 
 const Header = () => {
 	return (
@@ -21,8 +22,12 @@ const Header = () => {
 					/>
 				</a>
 				<div className="hidden lg:flex space-x-10 self-center font-mono font-extrabold text-xl">
-					<ul>Store</ul>
-					<ul>Community</ul>
+					<ul>
+						<Link href={"/productlist"}>Store</Link>
+					</ul>
+					<ul>
+						<Link href={"/userlist"}>Community</Link>
+					</ul>
 					<ul>About</ul>
 				</div>
 				<div className="hidden lg:block self-start">Register/Login</div>

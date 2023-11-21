@@ -26,26 +26,14 @@ model Product{
   description String
   price Float
   createAt DateTime @default(now())
-  shoppingCart ShoppingCart? @relation(fields: [shoppingCartId], references: [id])
-  shoppingCartId String?
-  cartItems CartItems?
+  shoppingCarts ShoppingCart[]
 }
 
 model ShoppingCart {
   id String @id @default(uuid())
   user User @relation(fields: [userId], references: [id])
   userId String @unique
-  cartItems CartItems?
-  product Product[]
-}
-
-model CartItems {
-  id String @id @default(uuid())
-  shoppingCart ShoppingCart @relation (fields: [cartId], references: [id] )
-  cartId String @unique
-  product Product @relation (fields: [productId], references: [id])
-  productId String @unique
-  quantity Int
+  products Product[]
 }
 
 

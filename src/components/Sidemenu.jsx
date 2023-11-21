@@ -5,6 +5,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { AiOutlineMenu, AiFillCloseCircle } from "react-icons/ai";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import PersonIcon from "@mui/icons-material/Person";
 import Link from "next/link";
@@ -59,7 +60,7 @@ const Sidemenu = () => {
 									<HomeIcon />
 								</div>
 								<div>
-									<Link href={"/"}>Store</Link>
+									<Link href={"/productlist"}>Store</Link>
 								</div>
 							</li>
 
@@ -68,7 +69,16 @@ const Sidemenu = () => {
 									<AssignmentIcon />
 								</div>
 								<div>
-									<Link href={"/"}>Community</Link>
+									<Link href={"/userlist"}>Community</Link>
+								</div>
+							</li>
+
+							<li className="space-x-2 flex">
+								<div>
+									<ShoppingCartIcon />
+								</div>
+								<div>
+									<Link href={"/cartlist"}>Manage Carts</Link>
 								</div>
 							</li>
 

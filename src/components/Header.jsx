@@ -28,6 +28,9 @@ const Header = () => {
 					<ul>
 						<Link href={"/userlist"}>Community</Link>
 					</ul>
+					<ul>
+						<Link href={"/cartlist"}>Manage Carts</Link>
+					</ul>
 					<ul>About</ul>
 				</div>
 				<div className="hidden lg:block self-start">Register/Login</div>

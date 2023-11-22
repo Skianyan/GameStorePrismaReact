@@ -14,12 +14,14 @@ export async function GET(response) {
 
 export async function POST(response) {
 	try {
-		const { productName, description, price } = await response.json();
+		const { userId } = await response.json();
 		const newCart = await prisma.shoppingCart.create({
 			data: {
-				productName,
-				description,
-				price,
+				user: {
+					connect: {
+						id: userId,
+					},
+				},
 			},
 		});
 

@@ -1,7 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import { useUserContext } from "../provider/userProvider";
+import { useShopContext } from "../provider/shopProvider";
+import { addUser } from "@/libs/addUser";
 const Formulario = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -9,7 +10,7 @@ const Formulario = () => {
 
 	const [error, setError] = useState(false);
 
-	const { user, setUser } = useUserContext();
+	const { user, setUser, shoppingCart, setShoppingCart } = useShopContext();
 	const router = useRouter();
 	//console.log(user);
 	useEffect(() => {
@@ -37,12 +38,14 @@ const Formulario = () => {
 
 		if (user === null) {
 			try {
-				const body = { username, password, email };
-				await fetch(`/api/routes/users`, {
-					cache: "no-store",
+				const userId = await addUser(newUser);
+				const newShoppingCart = {
+					userId,
+				};
+				await fetch(`/api/routes/carts`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(body),
+					body: JSON.stringify(newShoppingCart),
 				});
 				setUser(null);
 				router.push("/");
@@ -73,6 +76,7 @@ const Formulario = () => {
 			cache: "no-store",
 			method: "DELETE",
 		});
+
 		router.push("/");
 	};
 

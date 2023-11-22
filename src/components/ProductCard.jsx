@@ -3,12 +3,12 @@ import React from "react";
 
 //estado para facilitar navegacion
 import { useRouter } from "next/navigation";
-import { useProductContext } from "../provider/productProvider";
+import { useShopContext } from "../provider/shopProvider";
 
 const ProductCard = ({ item }) => {
 	//se crea instancia para navegar
 	const route = useRouter();
-	const { setProduct } = useProductContext();
+	const { setProduct } = useShopContext();
 	return (
 		<div
 			key={item.id}

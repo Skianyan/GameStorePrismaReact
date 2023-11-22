@@ -9,11 +9,11 @@ const CartCard = ({ item }) => {
 	//se crea instancia para navegar
 	const route = useRouter();
 	//const { setProduct } = useProductContext();
+	//console.log(item);
 	const { products } = item;
 
 	const productNames = products.map((product) => product.productName);
 
-	console.log(productNames);
 	return (
 		<div
 			key={item.id}
@@ -23,7 +23,12 @@ const CartCard = ({ item }) => {
 				<div>
 					<p>Cart ID: {item.id}</p>
 					<p>User ID: {item.userId}</p>
-					<p className="mr-4">{productNames.map((product) => [product])}</p>
+					<p>Games:</p>
+					{item.products.map((products) => (
+						<li key={products.id}>
+							{products.productName} - ${products.price}
+						</li>
+					))}
 					<a
 						onClick={() => {
 							//setProduct(item);

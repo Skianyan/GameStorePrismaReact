@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import { useProductContext } from "../provider/productProvider";
+import { useShopContext } from "../provider/shopProvider";
 const ProductForm = () => {
 	const [productName, setProductName] = useState("");
 	const [description, setDescription] = useState("");
@@ -9,7 +9,7 @@ const ProductForm = () => {
 
 	const [error, setError] = useState(false);
 
-	const { product, setProduct } = useProductContext();
+	const { product, setProduct } = useShopContext();
 	const router = useRouter();
 	console.log(product);
 	useEffect(() => {

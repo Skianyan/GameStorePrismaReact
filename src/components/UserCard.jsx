@@ -3,12 +3,12 @@ import React from "react";
 
 //estado para facilitar navegacion
 import { useRouter } from "next/navigation";
-import { useUserContext } from "../provider/userProvider";
+import { useShopContext } from "../provider/shopProvider";
 
 const UserCard = ({ item }) => {
 	//se crea instancia para navegar
 	const route = useRouter();
-	const { setUser } = useUserContext();
+	const { setUser } = useShopContext();
 	return (
 		<div
 			key={item.id}

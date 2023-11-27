@@ -11,7 +11,7 @@ const ProductForm = () => {
 
 	const { product, setProduct } = useShopContext();
 	const router = useRouter();
-	console.log(product);
+
 	useEffect(() => {
 		if (product !== null) {
 			setProductName(product.productName);

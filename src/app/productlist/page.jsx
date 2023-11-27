@@ -1,9 +1,15 @@
 import React from "react";
 import ProductCard from "@/components/ProductCard";
+
 import { prisma } from "@/libs/prisma";
 
 const productlist = async () => {
+	const cart = await prisma.shoppingCart.findMany({
+		include: { products: true },
+	});
+
 	const products = await prisma.product.findMany();
+
 	return (
 		<div
 			className="flex text-slate-200 bg-gradient-to-br from-[#2A475E] to-[#1B2838] min-h-[72vh] min-w-full justify-center

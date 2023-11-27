@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
+import { GET as getById } from "./[id]/route";
 export async function GET(response) {
 	try {
 		const carts = await prisma.shoppingCart.findMany({

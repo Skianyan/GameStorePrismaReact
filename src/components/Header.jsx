@@ -21,8 +21,8 @@ const Header = () => {
 						priority
 					/>
 				</a>
-				<div className="hidden lg:flex space-x-10 self-center font-mono font-extrabold text-xl">
-					<ul>
+				<div className="hidden lg:flex space-x-10 self-center font-mono font-extrabold text-xl ">
+					<ul className="no-underline text-white">
 						<Link href={"/productlist"}>Store</Link>
 					</ul>
 					<ul>

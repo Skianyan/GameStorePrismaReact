@@ -9,9 +9,9 @@ import { prisma } from "@/libs/prisma";
 const AddCartModal = ({ item, cartList }) => {
 	const [show, setShow] = useState(false);
 	const [carts, setCarts] = useState([]);
+	const [users, setUsers] = useState([]);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const { shoppingCart, setShoppingCart } = useShopContext();
 
 	useEffect(() => {
 		const getCarts = async () => {
@@ -64,7 +64,8 @@ const AddCartModal = ({ item, cartList }) => {
 					{carts.map((item) => {
 						return (
 							<div className="card flex justify-between">
-								{item.id}:{item.user}
+								{}
+								{item.id}:{item.users}
 								<Button
 									variant="success"
 									className="w-50"

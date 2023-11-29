@@ -4,7 +4,10 @@ import CartCard from "@/components/CartCard";
 
 const cartlist = async () => {
 	const cart = await prisma.shoppingCart.findMany({
-		include: { products: true },
+		include: {
+			products: true,
+			user: true,
+		},
 	});
 
 	return (

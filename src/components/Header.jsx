@@ -22,16 +22,40 @@ const Header = () => {
 					/>
 				</a>
 				<div className="hidden lg:flex space-x-10 self-center font-mono font-extrabold text-xl ">
-					<ul className="no-underline text-white">
-						<Link href={"/productlist"}>Store</Link>
+					<ul className="flex !no-underline !text-white [&>li]:ms-5">
+						<li>
+							<Link
+								href={"/productlist"}
+								className="!no-underline !text-white hover:text-cyan-500"
+							>
+								Store
+							</Link>
+						</li>
+						<li>
+							<Link
+								href={"/userlist"}
+								className="!no-underline !text-white hover:text-cyan-500"
+							>
+								Community
+							</Link>
+						</li>
+						<li>
+							<Link
+								href={"/cartlist"}
+								className="!no-underline !text-white hover:text-cyan-500"
+							>
+								Manage Carts
+							</Link>
+						</li>
+						<li>
+							<Link
+								href={"/"}
+								className="!no-underline !text-white hover:text-cyan-500"
+							>
+								About
+							</Link>
+						</li>
 					</ul>
-					<ul>
-						<Link href={"/userlist"}>Community</Link>
-					</ul>
-					<ul>
-						<Link href={"/cartlist"}>Manage Carts</Link>
-					</ul>
-					<ul>About</ul>
 				</div>
 				<div className="hidden lg:block self-start">Register/Login</div>
 			</div>

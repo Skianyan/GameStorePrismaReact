@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import CartCard from "./CartCard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { prisma } from "@/libs/prisma";
+import { getUser } from "@/libs/getUser";
 
 const AddCartModal = ({ item, cartList }) => {
 	const [show, setShow] = useState(false);
@@ -50,6 +51,21 @@ const AddCartModal = ({ item, cartList }) => {
 		handleClose();
 	};
 
+	const getUser = async (item) => {
+		try {
+			await fetch(`/api/routes/users/${item}`, {
+				method: "GET",
+				headers: { "Content-Type": "application/json" },
+			});
+		} catch (error) {
+			console.error(error);
+		}
+
+		const userJson = await response.json();
+		//console.log(typeof userJson);
+		return userJson;
+	};
+
 	return (
 		<>
 			<Button variant="success" onClick={handleShow}>
@@ -64,8 +80,9 @@ const AddCartModal = ({ item, cartList }) => {
 					{carts.map((item) => {
 						return (
 							<div className="card flex justify-between">
-								{}
-								{item.id}:{item.users}
+								Cart ID: {item.id}
+								<br />
+								User ID: {`${item.user.username}'s cart`}
 								<Button
 									variant="success"
 									className="w-50"

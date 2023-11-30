@@ -49,7 +49,7 @@ const Header = () => {
 						</li>
 						<li>
 							<Link
-								href={"/"}
+								href={"/aboutme"}
 								className="!no-underline !text-white hover:text-cyan-500"
 							>
 								About

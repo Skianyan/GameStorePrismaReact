@@ -11,7 +11,7 @@ const ProductForm = () => {
 
 	const { product, setProduct } = useShopContext();
 	const router = useRouter();
-	console.log(product);
+
 	useEffect(() => {
 		if (product !== null) {
 			setProductName(product.productName);
@@ -28,22 +28,23 @@ const ProductForm = () => {
 			return;
 		}
 		setError(false);
-		// este objeto se crea si el usuario está null
+		// este objeto se crea si el producto está null
 		const newProduct = {
 			productName,
 			description,
-			price,
+			price: Number(price),
 		};
 
 		if (product === null) {
 			try {
-				const body = { productName, description, price };
-				await fetch(`/api/routes/products`, {
+				await fetch(`http://localhost:3000/api/routes/products`, {
 					cache: "no-store",
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(body),
+					body: JSON.stringify(newProduct),
 				});
+				console.log(newProduct);
+				console.log(typeof price);
 				setProduct(null);
 				router.push("/");
 			} catch (error) {
@@ -129,10 +130,10 @@ const ProductForm = () => {
 						price
 					</label>
 					<input
-						type="text"
+						type="number"
 						id="price"
 						className="p-2 rounded-md text-slate-600"
-						placeholder="price"
+						placeholder="0"
 						value={price}
 						onChange={(e) => setPrice(e.target.value)}
 					/>

@@ -31,3 +31,43 @@ export async function DELETE(response, { params: { id } }) {
 		}
 	}
 }
+
+export async function PATCH(request, { params: { id, productId } }) {
+	try {
+		const cart = await prisma.shoppingCart.update({
+			where: { id },
+			include: { products: true },
+			data: {
+				products: {
+					disconnect: { id: productId },
+				},
+			},
+		});
+		return NextResponse.json(cart);
+	} catch (error) {
+		if (error instanceof Error) {
+			return NextResponse.json({ error: error.stack }, { status: 500 });
+		}
+	}
+}
+
+export async function PUT(request, { params: { id } }) {
+	console.log(id);
+	const product = await request.json();
+	try {
+		const newCart = await prisma.shoppingCart.update({
+			where: { id },
+			include: { products: true },
+			data: {
+				products: {
+					connect: { id: product.id },
+				},
+			},
+		});
+		return NextResponse.json(newCart);
+	} catch (error) {
+		if (error instanceof Error) {
+			return NextResponse.json({ error: error.stack }, { status: 500 });
+		}
+	}
+}

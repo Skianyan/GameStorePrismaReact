@@ -21,43 +21,43 @@ const Header = () => {
 						priority
 					/>
 				</a>
-				<div className="hidden lg:flex space-x-10 self-center font-mono font-extrabold text-xl ">
-					<ul className="flex !no-underline !text-white [&>li]:ms-5">
+				<div className="hidden lg:flex self-center font-mono font-extrabold text-xl ">
+					<ul className="flex gap- !no-underline gap-4 !text-white [&>li]:ms-5">
 						<li>
 							<Link
 								href={"/productlist"}
-								className="!no-underline !text-white hover:text-cyan-500"
+								className="!no-underline !text-gray-400 !hover:text-white"
 							>
-								Store
+								STORE
 							</Link>
 						</li>
 						<li>
 							<Link
 								href={"/userlist"}
-								className="!no-underline !text-white hover:text-cyan-500"
+								className="!no-underline !text-gray-400 hover:text-cyan-500"
 							>
-								Community
+								COMMUNITY
 							</Link>
 						</li>
 						<li>
 							<Link
 								href={"/cartlist"}
-								className="!no-underline !text-white hover:text-cyan-500"
+								className="!no-underline !text-gray-400 hover:text-cyan-500"
 							>
-								Manage Carts
+								CARTS
 							</Link>
 						</li>
 						<li>
 							<Link
 								href={"/aboutme"}
-								className="!no-underline !text-white hover:text-cyan-500"
+								className="!no-underline !text-gray-400 hover:text-cyan-500"
 							>
-								About
+								ABOUT
 							</Link>
 						</li>
 					</ul>
 				</div>
-				<div className="hidden lg:block self-start">Register/Login</div>
+				<div className="hidden lg:block self-start bg-slate-700 pa">Register/Login</div>
 			</div>
 		</header>
 	);
